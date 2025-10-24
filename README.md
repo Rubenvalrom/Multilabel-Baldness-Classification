@@ -8,7 +8,6 @@ This repository presents an academic implementation of a multilabel classificati
 
 - `notebook.ipynb`: Main Jupyter Notebook containing data exploration, preprocessing, model architecture, training, and evaluation.
 - `data/`: Directory containing training, validation, and test images and CSV label files.
-- `Model parameters results.xlsx`: Summary of model hyperparameters and outcomes.
 - `maxvit_t_model_state_dict.pth`: Saved state dict of the trained MaxViT-T model.
 - `.gitattributes`: Git attributes for repository management.
 
@@ -57,7 +56,6 @@ This repository presents an academic implementation of a multilabel classificati
 ### Evaluation
 
 - Training progress is monitored using validation loss.
-- Model parameters and results are summarized in the provided `.xlsx` file.
 
 ## Results
 
@@ -74,8 +72,9 @@ To reproduce the results:
 
 ## References
 
-- uze (2024). Hair-loss Classification Model. [Roboflow Universe](https://universe.roboflow.com/uze/hair-loss-nq8hh/dataset/1#).
-- MaxViT: Google Research, Image Classification Models.
+ 1. “hair-loss Classification Model by uze,” Roboflow, Jun. 19, 2024. https://universe.roboflow.com/uze/hair-loss-nq8hh. 
+ 2. Z. Tu et al., “MaxVIT: Multi-Axis Vision Transformer,” arXiv.org, Apr. 04, 2022. https://arxiv.org/abs/2204.01697.
+ 3. X. Shi, W. Cao, and S. Raschka, “Deep neural networks for rank-consistent ordinal regression based on conditional probabilities,” Pattern Analysis and Applications, vol. 26, no. 3, pp. 941–955, Jun. 2023, doi: 10.1007/s10044-023-01181-9.
 
 ## License
 
