@@ -6,11 +6,9 @@ This repository presents an academic implementation of a multilabel classificati
 
 ## Contents
 
-- `notebook.ipynb`: Main Jupyter Notebook containing data exploration, preprocessing, model architecture, training, and evaluation.
-- `data/`: Directory containing training, validation, and test images and CSV label files.
-- `saved_models/`: Directory containing trained models and state dictionaries (`maxvit_t_model_state_dict.pth`).
-- `utils/`: Utility scripts for data processing, augmentation, and evaluation.
-- `.gitattributes`: Git attributes for repository management.
+- `src/losses notebooks/classification-losses.ipynb`: Jupyter Notebook containing data exploration, preprocessing, model architecture, training, and evaluation.
+- `src/data/`: Directory containing training, validation, and test images along with CSV label files.
+- `src/models/`: Directory containing trained model state dictionaries like `maxvit_t_model_state_dict.pth`.
 
 ## Dataset
 
@@ -69,10 +67,10 @@ This repository presents an academic implementation of a multilabel classificati
 To reproduce the results:
 
 1. Clone this repository: `git clone https://github.com/Rubenvalrom/Multilabel-Baldness-Classification.git`
-2. Place the image data and CSV label files in the `data/` directory as per the notebook instructions.
+2. Place the image data and CSV label files in the `src/data/` directory as per the notebook instructions.
 3. Install dependencies using the provided `requirements.txt` file.
-4. Run `notebook.ipynb` in a Python environment with the required packages: `torch`, `torchvision`, `ema_pytorch`, `kornia`, `matplotlib`, `seaborn`, `pandas`, `numpy`, and `PIL`.
-5. Experiment with the model using alternative architectures provided in the `utils/` directory.
+4. Run `src/losses notebooks/classification-losses.ipynb` in a Python environment with the required packages: `torch`, `torchvision`, `ema_pytorch`, `kornia`, `matplotlib`, `seaborn`, `pandas`, `numpy`, and `PIL`.
+5. Experiment with the model using the provided datasets and evaluation scripts.
 
 ## References
 
