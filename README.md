@@ -5,8 +5,8 @@
 This repository presents an academic implementation of a multilabel classification model for androgenetic alopecia (male pattern baldness) using deep learning techniques in PyTorch and MaxViT-T architecture. The project leverages image data and regression-based target encoding to predict the severity of baldness in scalp images, focusing on multiple levels simultaneously. The work is inspired by and extends the open dataset from uze (2024): [hair-loss Classification Model](https://universe.roboflow.com/uze/hair-loss-nq8hh/dataset/1#).
 
 ## Contents
-
-- `src/losses notebooks/classification-losses.ipynb`: Jupyter Notebook containing data exploration, preprocessing, model architecture, training, and evaluation.
+- `src/notebook.ipynb`: Main Jupyter Notebook with EDA, data preprocessing, model architecture, training, and evaluation with L1Loss, which gave the better generalization.
+- `src/losses notebooks/`: Jupyter Notebook containing data preprocessing, model architecture, training, and evaluation of CrossEntropy, Coral and Corn Losses.
 - `src/data/`: Directory containing training, validation, and test images along with CSV label files.
 - `src/models/`: Directory containing trained model state dictionaries like `maxvit_t_model_state_dict.pth`.
 
@@ -15,10 +15,12 @@ This repository presents an academic implementation of a multilabel classificati
 - **Source**: [Roboflow Universe - Hair Loss Classification](https://universe.roboflow.com/uze/hair-loss-nq8hh/dataset/1#)
 - **Structure**: Images are labeled for seven levels of baldness (`LEVEL_2` to `LEVEL_7`), stored in CSV files for `train`, `valid`, and `test` splits.
 - **Size**:
-  - Train: 1,294 samples
+  - Train: 1,294 samples (It was already originally augmented, around 400 distinct subjects)
   - Validation: 133 samples
   - Test: 67 samples
-- **Preprocessing**: Auto-orientation, resizing to 640x640, and rotational augmentations.
+- **Preprocessing**:
+  - Resize to 224x244 for memory purposes and MaxVit's requirements. 
+  - Rotation, Brightness, Contrast, Hue, Saturation, Gaussian noise and Angle distorsion augmentations are applied randomly during training, varying each epoch.
 
 ## Methodology
 
@@ -39,7 +41,7 @@ This repository presents an academic implementation of a multilabel classificati
 
 ### Model Architecture
 
-- **Backbone**: MaxViT-T pretrained on ImageNet.
+- **Backbone**: MaxViT-T pretrained on ImageNet 1K.
 - **Modifications**:
   - First block weights are frozen.
   - Dropout layers (except the frozen block) are set to 0.5.
@@ -47,30 +49,34 @@ This repository presents an academic implementation of a multilabel classificati
 
 ### Training
 
-- **Loss Function**: L1 loss for regression.
+- **Loss Function**: L1 loss(MAE) for regression.
 - **Optimizer**: AdamW with scheduled learning rate, momentum adjustments, and weight decay.
-- Mixed precision training (using `torch.cuda.amp`) accelerates convergence and reduces memory consumption.
-- Early stopping with patience of 10 epochs is implemented to prevent overfitting.
+- Mixed precision training (using `torch.cuda.amp`) which drastically reduces memory consumption.
+- Early stopping with patience of 50 epochs is implemented to improve generalization.
 
 ### Evaluation
 
-- Training progress is monitored using validation loss and other metrics like MAE.
-- Bootstrap confidence intervals are reported for test set performance.
+- Bootstrap confidence intervals are reported for all sets performances.
+- Accuracy, MAE, Mape and Quadratic Cohen's Kappa score.
+- Confusion Matrix and Distribution of MAE on the whole set, pre-boostraping.
 
 ## Results
 
-- The model achieves a Mean Absolute Error (MAE) of 0.12 on the validation set and 0.15 on the test set.
-- Training logs, model weights, and evaluation scripts are included for reproducibility.
+- Test set:
+  - Accuracy: 0.82 ± 0.05,
+  - MAE: 0.22 ± 0.05 
+  - Mean Absolute Percentage Error: 8.71 ± 2.43
+  - Quadratic Cohen's Kappa: 0.96 ± 0.01
+    
+- Validation set:
+  - Accuracy: 0.73 ± 0.04
+  - Mean Absolute Error: 0.35 ± 0.05
+  - Mean Absolute Percentage Error: 13.52 ± 2.79
+  - Quadratic Cohen's Kappa: 0.90 ± 0.02
+    
+- Train set got all metrics effectively perfect even after the online augmentation and 0.5 dropout rate.
 
-## Reproducibility
-
-To reproduce the results:
-
-1. Clone this repository: `git clone https://github.com/Rubenvalrom/Multilabel-Baldness-Classification.git`
-2. Place the image data and CSV label files in the `src/data/` directory as per the notebook instructions.
-3. Install dependencies using the provided `requirements.txt` file.
-4. Run `src/losses notebooks/classification-losses.ipynb` in a Python environment with the required packages: `torch`, `torchvision`, `ema_pytorch`, `kornia`, `matplotlib`, `seaborn`, `pandas`, `numpy`, and `PIL`.
-5. Experiment with the model using the provided datasets and evaluation scripts.
+Overall the model has a good performance, it usually classifies correctly each subject, in a minority of cases it over/underestimates by 1 class the severity of the alopecia.
 
 ## References
 
