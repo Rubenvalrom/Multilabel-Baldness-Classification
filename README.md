@@ -8,7 +8,8 @@ This repository presents an academic implementation of a multilabel classificati
 - `src/notebook.ipynb`: Main Jupyter Notebook with EDA, data preprocessing, model architecture, training, and evaluation with L1Loss, which gave the better generalization.
 - `src/losses notebooks/`: Jupyter Notebook containing data preprocessing, model architecture, training, and evaluation of CrossEntropy, Coral and Corn Losses.
 - `src/data/`: Directory containing training, validation, and test images along with CSV label files.
-- `src/models/`: Directory containing trained model state dictionaries like `maxvit_t_model_state_dict.pth`.
+- `src/models/`: Directory containing the `AlopeciaClassifier` model and trained model state dictionaries in `state_dicts/` subdirectory.
+- `src/main.py`: Prediction script for image-based severity prediction using the trained model.
 
 ## Dataset
 
@@ -45,7 +46,7 @@ This repository presents an academic implementation of a multilabel classificati
 - **Modifications**:
   - First block weights are frozen.
   - Dropout layers (except the frozen block) are set to 0.5.
-  - The final classifier layer is replaced to output a single regression value.
+  - The final classifier layer is replaced to output a single regression value with a sigmoid activation function.
 
 ### Training
 
@@ -77,6 +78,19 @@ This repository presents an academic implementation of a multilabel classificati
 - Train set got all metrics effectively perfect even after the online augmentation and 0.5 dropout rate.
 
 Overall the model has a good performance, it usually classifies correctly each subject, in a minority of cases it over/underestimates by 1 class the severity of the alopecia.
+
+## Usage
+
+### Prediction Script
+
+The repository includes a `main.py` script that allows you to predict androgenetic alopecia severity for individual images using the trained `AlopeciaClassifier` model.
+
+**How to use:**
+1. Run the script: `python src/main.py`
+2. A file dialog will open - select an image file (supported formats: PNG, JPG, JPEG, BMP, TIFF, WEBP, AVIF)
+3. The image will be displayed, and the predicted severity level will be printed
+
+The `AlopeciaClassifier` model automatically loads the trained weights from `src/models/state_dicts/maxvit_t_model_state_dict.pth` and applies the necessary preprocessing transformations (resize to 224x224 and ImageNet normalization).
 
 ## References
 
