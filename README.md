@@ -64,16 +64,16 @@ This repository presents an academic implementation of a multilabel classificati
 ## Results
 
 - Test set:
-  - Accuracy: 0.82 ± 0.05,
-  - MAE: 0.22 ± 0.05 
-  - Mean Absolute Percentage Error: 8.71 ± 2.43
-  - Quadratic Cohen's Kappa: 0.96 ± 0.01
+  - Accuracy: 0.75 ± 0.05,
+  - MAE: 0.31 ± 0.05 
+  - Mean Absolute Percentage Error: 11.40 ± 2.40
+  - Quadratic Cohen's Kappa: 0.95 ± 0.02
     
 - Validation set:
-  - Accuracy: 0.73 ± 0.04
-  - Mean Absolute Error: 0.35 ± 0.05
-  - Mean Absolute Percentage Error: 13.52 ± 2.79
-  - Quadratic Cohen's Kappa: 0.90 ± 0.02
+  - Accuracy: 0.74 ± 0.04
+  - Mean Absolute Error: 0.32 ± 0.05
+  - Mean Absolute Percentage Error: 12.92 ± 3.02
+  - Quadratic Cohen's Kappa: 0.92 ± 0.02 
     
 - Train set got all metrics effectively perfect even after the online augmentation and 0.5 dropout rate.
 
