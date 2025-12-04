@@ -5,11 +5,13 @@
 This repository presents an academic implementation of a multilabel classification model for androgenetic alopecia (male pattern baldness) using deep learning techniques in PyTorch and MaxViT-T architecture. The project leverages image data and regression-based target encoding to predict the severity of baldness in scalp images, focusing on multiple levels simultaneously. The work is inspired by and extends the open dataset from uze (2024): [hair-loss Classification Model](https://universe.roboflow.com/uze/hair-loss-nq8hh/dataset/1#).
 
 ## Contents
-- `src/notebook.ipynb`: Main Jupyter Notebook with EDA, data preprocessing, model architecture, training, and evaluation with L1Loss, which gave the better generalization.
-- `src/losses notebooks/`: Jupyter Notebook containing data preprocessing, model architecture, training, and evaluation of CrossEntropy, Coral and Corn Losses.
+- `notebook/notebook.ipynb`: Main Jupyter Notebook with EDA, data preprocessing, model architecture, training, and evaluation with L1Loss, which gave the better generalization.
 - `src/data/`: Directory containing training, validation, and test images along with CSV label files.
-- `src/models/`: Directory containing the `AlopeciaClassifier` model and trained model state dictionaries in `state_dicts/` subdirectory.
-- `src/main.py`: Prediction script for image-based severity prediction using the trained model.
+- `src/pipeline/`: Python modules for the prediction pipeline, including model loading, image processing, and inference.
+- `main.py`: Prediction script for image-based severity prediction using the trained model.
+- `environment.yml`: Conda environment configuration with all required dependencies.
+- `docker-compose.yml`: Docker Compose configuration for containerized deployment.
+- `mlflow.db`: MLflow tracking database containing experiment history, metrics, and model registry.
 
 ## Dataset
 
@@ -86,11 +88,11 @@ Overall the model has a good performance, it usually classifies correctly each s
 The repository includes a `main.py` script that allows you to predict androgenetic alopecia severity for individual images using the trained `AlopeciaClassifier` model.
 
 **How to use:**
-1. Run the script: `python src/main.py`
+1. Run the script: `python main.py`
 2. A file dialog will open - select an image file (supported formats: PNG, JPG, JPEG, BMP, TIFF, WEBP, AVIF)
 3. The image will be displayed, and the predicted severity level will be printed
 
-The `AlopeciaClassifier` model automatically loads the trained weights from `src/models/state_dicts/maxvit_t_model_state_dict.pth` and applies the necessary preprocessing transformations (resize to 224x224 and ImageNet normalization).
+The model is automatically loaded from MLflow (version 2 of "Alopecia Classifier") and applies the necessary preprocessing transformations (resize to 224x224 and ImageNet normalization).
 
 ## References
 
