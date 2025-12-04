@@ -8,6 +8,9 @@ services:
       - "5000:5000"
     volumes:
       - ./src/artifacts:/mlflow/artifacts
+      - ./src/mlruns:/mlflow/mlruns
+      - ./mlflow.db:/mlflow/mlflow.db
+
     environment:
       MLFLOW_BACKEND_STORE_URI: sqlite:///mlflow.db
       MLFLOW_DEFAULT_ARTIFACT_ROOT: /mlflow/artifacts
