@@ -11,7 +11,7 @@ This repository presents an academic implementation of a multilabel classificati
 - `main.py`: Prediction script for image-based severity prediction using the trained model.
 - `environment.yml`: Conda environment configuration with all required dependencies.
 - `docker-compose.yml`: Docker Compose configuration for containerized deployment.
-- `mlflow.db`: MLflow tracking database for experiment management and model versioning.
+- `mlflow.db`: MLflow tracking database containing experiment history, metrics, and model registry.
 
 ## Dataset
 
