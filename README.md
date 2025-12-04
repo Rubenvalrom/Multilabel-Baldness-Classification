@@ -57,6 +57,16 @@ This repository presents an academic implementation of a multilabel classificati
 - Mixed precision training (using `torch.cuda.amp`) which drastically reduces memory consumption.
 - Early stopping with patience of 50 epochs is implemented to improve generalization.
 
+### Experiment Tracking with MLflow
+
+- **MLflow Integration**: The project uses MLflow for comprehensive experiment tracking and model management.
+- **Tracking URI**: Configured to use a local MLflow server at `http://localhost:5000`.
+- **Experiment Organization**: All runs are organized under the "Alopecia Classification" experiment.
+- **Model Logging**: The trained MaxViT-T model is logged using `mlflow.pytorch.log_model()` for reproducibility.
+- **Metrics Logging**: Performance metrics (Accuracy, MAE, MAPE, Quadratic Kappa) are logged for train, validation, and test sets.
+- **Model Registry**: The best performing model is registered in the MLflow Model Registry as "Alopecia Classifier" for easy deployment and version control.
+- **Versioning**: Models are versioned automatically, allowing comparison of different training runs and model iterations.
+
 ### Evaluation
 
 - Bootstrap confidence intervals are reported for all sets performances.
