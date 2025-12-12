@@ -1,20 +1,16 @@
-import tkinter as tk
-from tkinter.filedialog import askopenfilename
-import kornia.io as Kio
+import easygui
+import cv2
+from matplotlib.image import imread
+import numpy as np
 
-def load_image(device="cpu"):
-
-    root = tk.Tk()
-    root.withdraw()  # Hide the root window
-
-    file_path = askopenfilename(
+def load_image():
+    file_path = easygui.fileopenbox(
         title="Select an image",
-        filetypes=[("Images", "*.png *.jpg *.jpeg *.bmp *.tiff *.webp *.avif")],
+        filetypes=["*.png", "*.jpg", "*.jpeg", "*.bmp", "*.tiff", "*.webp", "*.avif"]
     )
     if not file_path:
         raise ValueError("No image selected.")
     
-    image = Kio.load_image(file_path, device=device)
-    
+    image = imread(file_path)
     return file_path, image
 
