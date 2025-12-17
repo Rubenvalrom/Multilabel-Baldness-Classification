@@ -1,4 +1,3 @@
-from src.pipeline.load_image import load_image
 from src.pipeline.crop_head import crop_head
 from src.pipeline.process_image import process_image
 from src.pipeline.load_model import load_model
