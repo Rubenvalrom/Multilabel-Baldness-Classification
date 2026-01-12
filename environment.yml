@@ -176,6 +176,7 @@ dependencies:
       - gitpython==3.1.45
       - google-auth==2.43.0
       - google-pasta==0.2.0
+      - grad-cam==1.5.5
       - graphene==3.4.3
       - graphql-core==3.2.7
       - graphql-relay==3.2.0
@@ -224,6 +225,7 @@ dependencies:
       - rsa==4.9.1
       - scikit-learn==1.8.0
       - scipy==1.16.3
+      - seaborn==0.13.2
       - smmap==5.0.2
       - sqlalchemy==2.0.45
       - sqlparse==0.5.4
@@ -235,7 +237,9 @@ dependencies:
       - termcolor==3.2.0
       - threadpoolctl==3.6.0
       - torch==2.7.0+cu126
+      - torchinfo==1.8.0
       - torchvision==0.22.0+cu126
+      - ttach==0.0.3
       - urllib3==2.6.2
       - uvicorn==0.38.0
       - waitress==3.0.2
