@@ -23,7 +23,7 @@ interface = gr.Interface(
     ),
     outputs=gr.Slider(label="Analysis Result", minimum=0, maximum=6, step=1),
     title="Androgenetic Alopecia Classification",
-    description="Upload or take a selfie or a photo of the scalp to analyze the androgenetic alopecia severity from 0 to 6",
+    description="Upload or take a selfie or a photo of the scalp to analyze the androgenetic alopecia severity from 0 to 5",
     flagging_mode="never"
 )
 
